@@ -14,6 +14,8 @@ from .dataset.base import MutantSequenceData, RankingSequenceData, MetaRankingSe
 from .utils.data import make_dir, split_data
 from .utils.score import metrics, group_scores, summarize_scores
 
+model_names = config.model_dir
+
 def set_seed(seed):
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)

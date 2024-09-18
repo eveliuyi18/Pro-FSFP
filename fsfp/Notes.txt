@@ -1,0 +1,15 @@
+Notes for studying FSFP package:
+0. Logged in my personal GitHub and pulled FSFP package to my iPEG folder
+1. Installed necessary packages in cpeg-mlde env: torch, transformers, learn2learn
+2. Try running "python retrieve.py -m vectorize -md esm2" to generate embeddings as instructed in the README.md file. Found a bug in pipeline.py file: 
+File retrival.py imports "model_names" from pipeline.py but there was nothing to import. Added a line that imports model_names from config.json (current line17)
+3. Try running "python retrieve.py -m vectorize -md esm2" again. It ran successfully but did not output anything. 
+Realize that it processes test dataset in data/substititions folder and save the results into retrived folder with file name "vectors_esm2.pkl"
+4. Try opening the pkl file as instructed by ChatGPT using pickle but couldn't. Try opening merged.pkl in data folder (part of the processing) but still couldn't 
+5. Digged preprocess.py and data.py (under utils) and realized that the pkl files were saved with torch.save(). 
+Tried using torch.load() to open the above files and finally succeeded. 
+6. Tried some other functions in data.py to understand what does "preprocessing" do. 
+Realized that the input csv files had quite a lot of columns of which i dont understand the meaning. These are dms datasets, but with some other labels too. 
+7. To find out: how many inputs there are in these two test csv? 
+Where do they come from and what are the meanings of the labels? 
+Why does the package want to merge them? More importantly, how were the embedding vectors generated (in retrival.py)?
